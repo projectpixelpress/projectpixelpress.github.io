@@ -1,0 +1,159 @@
+<html>
+
+<head>
+	<meta name="viewport" content="viewport-fit=cover, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<link type="text/css" rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+	<section id="intro">
+		<div class="top-banner">
+			Big news! The Bloxels Builder app is now Bloxels EDU.&nbsp;
+			<a href="http://edu.bloxelsbuilder.com/bloxels-home-account">Sign up to start building!</a>
+		</div>
+		<div class="hero">
+			<div class="hero-background"></div>
+			<div class="hero-logo"></div>
+			<div class="hero-content">
+				<h1>Building just got bigger.</h1>
+				<h3>Bring your ideas to life with Bloxels EDU.</h3>
+				<div class="button-row">
+					<a href="http://edu.bloxelsbuilder.com/bloxels-home-account" class="button white">Get Personal Account</a>
+					<a href="http://edu.bloxelsbuilder.com" class="button white">For Educators</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="purchase">
+		<div id="product-image"></div>
+		<div class="secondary-content">
+			<!-- <h3>Purchased a Bloxels kit?<br />Sign up for your free account!</h3> -->
+			<!-- <p>
+				Bloxels Builder has been replaced by Bloxels EDU. Provide a proof of
+				purchase and you’ll be able to set up a free account in Bloxels EDU.
+			</p> -->
+			<!-- <a href="http://edu.bloxelsbuilder.com/bloxels-home-account" class="button green">Sign Up</a> -->
+			<h3>Purchased a Bloxels kit?<br />Contact Us for your free account!</h3>
+			<p>
+				Bloxels Builder has been replaced by Bloxels EDU. Send us proof of purchase to set up a free account in Bloxels EDU.
+			</p>
+			<a href="mailto:support@bloxelsbuilder.com?subject=Bloxels%20Account%20Request" class="button green">Contact Us</a>
+		</div>
+	</section>
+	<section id="migrate">
+		<div id="migrate-image"></div>
+		<div class="secondary-content">
+			<h3>Already a Bloxels User?<br />Bring your creations into the new app!</h3> -->
+			<p>
+				Bloxels Builder users are now able to set up an account in Bloxels EDU, and you can bring your Infinity Wall creations with you.
+			</p>
+			<a href="https://hub.bloxelsbuilder.com/migrate" class="button green">Migrate Bloxels Builder account</a>
+		</div>
+	</section>
+	<section id="level-preview">
+	</section>
+	<section id="features">
+		<h1>What's better about Bloxels EDU?</h1>
+		<h2>
+			Build unique characters and worlds to tell your story. With all-new
+			editor tools, power-ups, and action blocks, you can create the game you imagine.
+		</h2>
+		<div class="feature-list">
+			<div class="feature">
+				<div class="feature-image">
+					<img src="images/build-capture-play.gif" alt="Build capture play" />
+				</div>
+				<div class="feature-title">
+					Build Anywhere
+				</div>
+				<div class="feature-description">
+					Login on any supported device, including the Web, and pick up where
+					you left off with your games.
+				</div>
+			</div>
+			<div class="feature">
+				<div class="feature-image">
+					<img src="images/background.gif" alt="Remixing Assets" />
+				</div>
+				<div class="feature-title">
+					Remix Free Assets
+				</div>
+				<div class="feature-description">
+					Themed characters, art, and backgrounds are free to use as
+					"Asset Packs" in your own games.
+				</div>
+			</div>
+			<div class="feature">
+				<div class="feature-image">
+					<img src="images/globe.gif" alt="Pixelated Spinning Globe" />
+				</div>
+				<div class="feature-title">
+					Share to the World
+				</div>
+				<div class="feature-description">
+					Launch your games into the Web Arcade. You can publish and share the
+					link to your game anywhere.
+				</div>
+			</div>
+		</div>
+		<a href="http://edu.bloxelsbuilder.com/bloxels-home-account" class="button green">Sign Up</a>
+	</section>
+	<section id="footer">
+		<a href="http://edu.bloxelsbuilder.com" class="footer-link">
+			Looking for Tutorials, Support, and More? Go to Bloxels EDU.
+		</a>
+	</section>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39154237-14"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-39154237-14');
+
+		//Track Outbound Link Clicks
+		(function trackOutbounds() {
+			var hitCallbackHandler = function(url,win) {
+				if (win) {
+					window.open(url, win);
+				} else {
+					window.location.href = url;
+				}
+		    };
+
+		    var addEvent = function(el, eventName, handler) {
+                if (el.addEventListener) {
+                        el.addEventListener(eventName, handler);
+                        } else {
+                        el.attachEvent('on' + eventName, function(){
+                                handler.call(el);
+                    });
+                }
+		    }
+
+			if (document.getElementsByTagName) {
+				var el = document.getElementsByTagName('a');
+				var getDomain = document.domain.split('.').reverse()[1] + '.' + document.domain.split('.').reverse()[0];
+
+				for (var i=0; i < el.length;i++) {
+					var href = (typeof(el[i].getAttribute('href')) == 'string' ) ? el[i].getAttribute('href') : '';
+					var myDomain = href.match(getDomain);
+					if ((href.match(/^(https?:|\/\/)/i)  && !myDomain) || href.match(/^mailto\:/i)) {
+						addEvent(el[i],'click', function(e) {
+							var url = this.getAttribute('href'), win = (typeof(this.getAttribute('target')) == 'string') ? this.getAttribute('target') : '';
+							console.log ("add event", url);
+                            ga('send', 'event', 'outbound', 'click', url,
+                                {'hitCallback': hitCallbackHandler(url,win)},
+								{'nonInteraction': 1}
+                            );
+							e.preventDefault();
+						});
+					}
+				}
+			}
+		})();
+	</script>
+
+</body>
+
+</html>
